@@ -36,3 +36,7 @@ function precmd {
     PROMPT="%{$fg[magenta]%}%n%{$reset_color%} at%{$fg[yellow]%} %m%{$reset_color%} in %{$fg_bold[green]%}%c%{$reset_color%}$(git_prompt_branch)$(git_prompt_status)
 $(prompt_char) "
 }
+
+function dotfiles {
+    ssh "$1" "git clone -n https://github.com/vslinko/dotfiles.git && mv dotfiles/.git . && rm -r dotfiles && git reset --hard"
+}
