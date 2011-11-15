@@ -32,9 +32,37 @@ function git_prompt_status {
     echo '!'
 }
 
+function prompt_return_code {
+     echo "%(?.. %{$fg[red]%}[%?]%{$reset_color%})"
+}
+
+function prompt_battery_status {
+    battery=$(ioreg -n AppleSmartBattery -r | grep Capacity | grep -v Legacy | tr '\n' ' | ' | awk '{printf("%.0f", $6/$3 * 100)}')
+
+    if [ $battery -lt 20 ]; then
+        color="%{$fg[red]%}"
+    elif [ $battery -lt 50 ]; then
+        color="%{$fg[yellow]%}"
+    else
+        color="%{$fg[green]%}"
+    fi
+
+    filled=${(l:$(expr $battery / 10)::▸:)}
+    empty=${(l:$(expr 10 - $battery / 10)::▹:)}
+
+    echo $color$filled$empty"%{$reset_color%}"
+}
+
+if [ -x /usr/sbin/ioreg ]; then
+    rprompt="$(prompt_battery_status)"
+else
+    rprompt=""
+fi
+
 function precmd {
-    PROMPT="%{$fg[magenta]%}%n%{$reset_color%} at%{$fg[yellow]%} %m%{$reset_color%} in %{$fg_bold[green]%}%c%{$reset_color%}$(git_prompt_branch)$(git_prompt_status)
+    PROMPT="%{$fg[magenta]%}%n%{$reset_color%} at%{$fg[yellow]%} %m%{$reset_color%} in %{$fg_bold[green]%}%c%{$reset_color%}$(git_prompt_branch)$(git_prompt_status)$(prompt_return_code)
 $(prompt_char) "
+    RPROMPT="$rprompt"
 }
 
 function dotfiles {
