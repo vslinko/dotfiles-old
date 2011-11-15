@@ -1,0 +1,45 @@
+function prompt_git_branch {
+    ref=$(git symbolic-ref HEAD 2>/dev/null) || return
+    echo " on %{$fg[magenta]%}${ref#refs/heads/}%{$reset_color%}"
+}
+
+function prompt_git_status {
+    index=$(git status --porcelain 2>/dev/null) || return
+    [ $index ] && echo '?' && return
+    echo '!'
+}
+
+function prompt_return_code {
+     echo "%(?.. %{$fg[red]%}[%?]%{$reset_color%})"
+}
+
+function prompt_char {
+    git branch &>/dev/null && echo '±' && return
+    echo '○'
+}
+
+function prompt_battery_status {
+    battery=$(ioreg -n AppleSmartBattery -r | grep Capacity | grep -v Legacy | tr '\n' ' | ' | awk '{printf("%.0f", $6/$3 * 100)}')
+
+    if [ $battery -lt 20 ]; then
+        color="%{$fg[red]%}"
+    elif [ $battery -lt 50 ]; then
+        color="%{$fg[yellow]%}"
+    else
+        color="%{$fg[green]%}"
+    fi
+
+    filled=${(l:$(expr $battery / 10)::▸:)}
+    empty=${(l:$(expr 10 - $battery / 10)::▹:)}
+
+    echo $color$filled$empty"%{$reset_color%}"
+}
+
+prompt="%{$fg[magenta]%}%n%{$reset_color%} at%{$fg[yellow]%} %m%{$reset_color%} in %{$fg_bold[green]%}%~%{$reset_color%}$(prompt_git_branch)$(prompt_git_status)$(prompt_return_code)
+$(prompt_char) "
+
+if [ -x /usr/sbin/ioreg ]; then
+    rprompt="$(prompt_battery_status)"
+else
+    rprompt=""
+fi
