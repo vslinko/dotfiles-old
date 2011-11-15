@@ -62,7 +62,7 @@ else
 fi
 
 function precmd {
-    PROMPT="%{$fg[magenta]%}%n%{$reset_color%} at%{$fg[yellow]%} %m%{$reset_color%} in %{$fg_bold[green]%}%c%{$reset_color%}$(git_prompt_branch)$(git_prompt_status)$(prompt_return_code)
+    PROMPT="%{$fg[magenta]%}%n%{$reset_color%} at%{$fg[yellow]%} %m%{$reset_color%} in %{$fg_bold[green]%}%~%{$reset_color%}$(git_prompt_branch)$(git_prompt_status)$(prompt_return_code)
 $(prompt_char) "
     RPROMPT="$rprompt"
 }
