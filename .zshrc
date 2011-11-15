@@ -11,6 +11,8 @@ colors
 
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:$HOME/bin
 
+EDITOR=nano
+
 if [ $OSTYPE = 'linux-gnu' ]; then
     alias ls='ls --color=auto'
     alias grep='grep --colour=auto'
