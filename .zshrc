@@ -21,12 +21,18 @@ function prompt_char {
     echo '○'
 }
 
-function git_branch {
+function git_prompt_branch {
     ref=$(git symbolic-ref HEAD 2>/dev/null) || return
     echo " on %{$fg[magenta]%}${ref#refs/heads/}%{$reset_color%}"
 }
 
+function git_prompt_status {
+    index=$(git status --porcelain 2>/dev/null) || return
+    [ $index ] && echo '?' && return
+    echo '!'
+}
+
 function precmd {
-    PROMPT="%{$fg[magenta]%}%n%{$reset_color%} at%{$fg[yellow]%} %m%{$reset_color%} in %{$fg_bold[green]%}%c%{$reset_color%}$(git_branch)
+    PROMPT="%{$fg[magenta]%}%n%{$reset_color%} at%{$fg[yellow]%} %m%{$reset_color%} in %{$fg_bold[green]%}%c%{$reset_color%}$(git_prompt_branch)$(git_prompt_status)
 $(prompt_char) "
 }
