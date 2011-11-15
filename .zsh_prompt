@@ -38,8 +38,8 @@ function prompt_battery_status {
 prompt="%{$fg[magenta]%}%n%{$reset_color%} at%{$fg[yellow]%} %m%{$reset_color%} in %{$fg_bold[green]%}%~%{$reset_color%}$(prompt_git_branch)$(prompt_git_status)$(prompt_return_code)
 $(prompt_char) "
 
+rprompt="%t"
+
 if [ -x /usr/sbin/ioreg ]; then
-    rprompt="$(prompt_battery_status)"
-else
-    rprompt=""
+    rprompt="$rprompt $(prompt_battery_status)"
 fi
