@@ -30,8 +30,3 @@ function dotfiles {
 
 # PROMPT
 . ~/.zsh_prompt
-
-function precmd {
-    PROMPT="$prompt"
-    RPROMPT="$rprompt"
-}

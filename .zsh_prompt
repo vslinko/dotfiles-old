@@ -19,6 +19,8 @@ function prompt_char {
 }
 
 function prompt_battery_status {
+    [ -x /usr/sbin/ioreg ] || return
+
     battery=$(ioreg -n AppleSmartBattery -r | grep Capacity | grep -v Legacy | tr '\n' ' | ' | awk '{printf("%.0f", $6/$3 * 100)}')
 
     if [ $battery -lt 20 ]; then
@@ -35,11 +37,8 @@ function prompt_battery_status {
     echo $color$filled$empty"%{$reset_color%}"
 }
 
-prompt="%{$fg[magenta]%}%n%{$reset_color%} at%{$fg[yellow]%} %m%{$reset_color%} in %{$fg_bold[green]%}%~%{$reset_color%}$(prompt_git_branch)$(prompt_git_status)$(prompt_return_code)
+function precmd {
+    PROMPT="%{$fg[magenta]%}%n%{$reset_color%} at%{$fg[yellow]%} %m%{$reset_color%} in %{$fg_bold[green]%}%~%{$reset_color%}$(prompt_git_branch)$(prompt_git_status)$(prompt_return_code)
 $(prompt_char) "
-
-rprompt="%t"
-
-if [ -x /usr/sbin/ioreg ]; then
-    rprompt="$rprompt $(prompt_battery_status)"
-fi
+    RPROMPT="%t $(prompt_battery_status)"
+}
