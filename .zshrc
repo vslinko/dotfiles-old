@@ -19,6 +19,10 @@ if [ $OSTYPE = 'linux-gnu' ]; then
     alias grep='grep --colour=auto'
 fi
 
+alias ll='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+
 # Functions
 function dotfiles {
     if [ $1 ]; then
@@ -27,6 +31,12 @@ function dotfiles {
         git pull && source .zshrc
     fi
 }
+
+if [ -d ~/Code ]; then
+    function c {
+        cd ~/Code/$1
+    }
+fi
 
 # PROMPT
 . ~/.zsh_prompt
