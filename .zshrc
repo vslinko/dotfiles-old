@@ -35,11 +35,18 @@ function dotfiles {
     fi
 }
 
-if [ -d ~/Code ]; then
-    function c {
-        cd ~/Code/$1
-    }
-fi
+CODE_DIR=~/Code
+function c {
+    [ -d $CODE_DIR/$1 ] && cd $CODE_DIR/$1
+}
+
+function c_comp {
+    old=$(pwd)
+    cd $CODE_DIR
+    reply=($(ls -d */ | sed 's/\/$//'))
+    cd $old
+}
+compctl -K c_comp c
 
 . ~/.zsh_todo
 
