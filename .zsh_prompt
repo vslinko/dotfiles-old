@@ -37,8 +37,13 @@ function prompt_battery_status {
     echo $color$filled$empty"%{$reset_color%}"
 }
 
+function prompt_todo {
+    tc=$(tc)
+    [ $tc -ne 0 ] && echo "%{$fg[cyan]%}($tc)%{$reset_color%} "
+}
+
 function precmd {
     PROMPT="%{$fg[magenta]%}%n%{$reset_color%} at%{$fg[yellow]%} %m%{$reset_color%} in %{$fg_bold[green]%}%~%{$reset_color%}$(prompt_git_branch)$(prompt_git_status)$(prompt_return_code)
 $(prompt_char) "
-    RPROMPT="%t $(prompt_battery_status)"
+    RPROMPT="$(prompt_todo)%t $(prompt_battery_status)"
 }

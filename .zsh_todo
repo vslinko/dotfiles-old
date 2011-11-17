@@ -1,0 +1,22 @@
+TODO=~/.todo
+[ ! -f $TODO ] && touch $TODO
+
+function t {
+    if [ $# -eq 0 ]; then
+        awk '{print NR". "$0}' $TODO
+    else
+        echo "$*" >> $TODO
+    fi
+}
+
+function td {
+    if [ $# -eq 0 ]; then
+        echo -n "sure? " && read sure
+        [ $sure != 'y' ] && return
+    fi
+    sed -i -e "$1d" $TODO
+}
+
+function tc {
+    echo $(cat $TODO | wc -l)
+}

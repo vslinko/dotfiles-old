@@ -38,5 +38,7 @@ if [ -d ~/Code ]; then
     }
 fi
 
+. ~/.zsh_todo
+
 # PROMPT
 . ~/.zsh_prompt
