@@ -22,6 +22,7 @@ fi
 alias ll='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
+alias please='sudo'
 
 # Functions
 function dotfiles {
