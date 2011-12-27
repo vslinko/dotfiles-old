@@ -23,6 +23,8 @@ alias ll='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
 alias please='sudo'
+alias www='sudo -u www-data'
+alias mongod='mongod run --nojournal --dbpath $HOME/data/mongo --config /usr/local/Cellar/mongodb/2.0.1-x86_64/mongod.conf'
 
 # Functions
 function dotfiles {
