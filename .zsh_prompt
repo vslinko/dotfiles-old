@@ -18,25 +18,6 @@ function prompt_char {
     echo '○'
 }
 
-function prompt_battery_status {
-    [ -x /usr/sbin/ioreg ] || return
-
-    battery=$(ioreg -n AppleSmartBattery -r | grep Capacity | grep -v Legacy | tr '\n' ' | ' | awk '{printf("%.0f", $6/$3 * 100)}')
-
-    if [ $battery -lt 20 ]; then
-        color="%{$fg[red]%}"
-    elif [ $battery -lt 50 ]; then
-        color="%{$fg[yellow]%}"
-    else
-        color="%{$fg[green]%}"
-    fi
-
-    filled=${(l:$(expr $battery / 10)::▸:)}
-    empty=${(l:$(expr 10 - $battery / 10)::▹:)}
-
-    echo $color$filled$empty"%{$reset_color%}"
-}
-
 function prompt_todo {
     tc=$(tc)
     [ $tc -ne 0 ] && echo "%{$fg[cyan]%}($tc)%{$reset_color%} "
@@ -45,5 +26,5 @@ function prompt_todo {
 function precmd {
     PROMPT="%{$fg[magenta]%}%n%{$reset_color%} at%{$fg[yellow]%} %m%{$reset_color%} in %{$fg_bold[green]%}%~%{$reset_color%}$(prompt_git_branch)$(prompt_git_status)$(prompt_return_code)
 $(prompt_char) "
-    RPROMPT="$(prompt_todo)%t $(prompt_battery_status)"
+    RPROMPT="$(prompt_todo)%t"
 }
