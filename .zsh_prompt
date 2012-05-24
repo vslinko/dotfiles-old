@@ -2,7 +2,7 @@ function prompt_git_branch {
     ref=$(git symbolic-ref HEAD 2>/dev/null) || return
     index=$(git status --porcelain 2>/dev/null) || return
     echo -n " on "
-    [ $index ] && echo -n "%{$fg[magenta]%}"
+    [ $index ] && echo -n "%{$fg[red]%}"
     echo -n "${ref#refs/heads/}"
     [ $index ] && echo "%{$reset_color%}"
 }
