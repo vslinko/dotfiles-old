@@ -1,0 +1,14 @@
+CODE_DIR=~/Code
+
+c () {
+    [ -d $CODE_DIR/$1 ] && cd $CODE_DIR/$1
+}
+
+_c () {
+    old=$(pwd)
+    cd $CODE_DIR
+    reply=($(ls -d */ | sed 's/\/$//'))
+    cd $old
+}
+
+compctl -K _c c

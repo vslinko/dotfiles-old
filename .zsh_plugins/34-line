@@ -1,0 +1,19 @@
+line () {
+    LINE="$1"
+    FILE="$2"
+
+    [ $LINE -le 0 ] && exit 1
+    [ ! -r $FILE ] && exit 2
+
+    if [ "$3" ]; then
+        SHOW="$3"
+
+        [ $SHOW -le 0 ] && exit 3
+
+        LINE=$(( $LINE+$SHOW/2 ))
+    else
+        SHOW=1
+    fi
+
+    head -"$LINE" "$FILE" | tail -"$SHOW"
+}

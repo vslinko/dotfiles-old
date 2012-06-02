@@ -1,0 +1,10 @@
+if [ $OSTYPE = 'linux-gnu' ]; then
+    alias ls='ls --color=auto'
+    alias grep='grep --colour=auto'
+fi
+
+alias ll='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+alias www='sudo -u www-data'
+alias search='ack -i $1'

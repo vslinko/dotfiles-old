@@ -1,0 +1,9 @@
+setopt no_beep
+
+bindkey -e
+
+autoload -U compinit
+compinit
+
+autoload -U colors
+colors

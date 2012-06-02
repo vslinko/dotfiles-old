@@ -3,7 +3,7 @@ function prompt_git_branch {
     index=$(git status --porcelain 2>/dev/null) || return
     echo -n " on"
     [ $index ] && echo -n "%{$fg[red]%}"
-    echo -n " ${ref#refs/heads/} "
+    echo -n " ${ref#refs/heads/}"
     [ $index ] && echo "%{$reset_color%}"
 }
 
@@ -17,6 +17,6 @@ function prompt_char {
 }
 
 function precmd {
-    PROMPT="%{$fg[magenta]%}%n%{$reset_color%} at%{$fg[yellow]%} %m%{$reset_color%} in %{$fg_bold[green]%}%~%{$reset_color%}$(prompt_git_branch)%t$(prompt_return_code)
+    PROMPT="%{$fg[magenta]%}%n%{$reset_color%} at%{$fg[yellow]%} %m%{$reset_color%} in %{$fg_bold[green]%}%~%{$reset_color%}$(prompt_git_branch)$(prompt_return_code)
 $(prompt_char) "
 }
