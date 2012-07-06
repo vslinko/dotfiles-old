@@ -1,15 +1,5 @@
-composer.phar () {
-    if [ ! -f $HOME_BIN/composer.phar ]; then
-        wget http://getcomposer.org/composer.phar -O $HOME_BIN/composer.phar
-        chmod a+x $HOME_BIN/composer.phar
-    fi
-    $HOME_BIN/composer.phar $*
+_composer () {
+    compadd $(composer --no-ansi | sed "1,/Available commands/d" | awk '/^  [a-z]+/ { print $1 }')
 }
 
-_composer.phar () {
-    if [ -f $HOME_BIN/composer.phar ]; then
-        compadd $($HOME_BIN/composer.phar --no-ansi | sed "1,/Available commands/d" | awk '/^  [a-z]+/ { print $1 }')
-    fi
-}
-
-compdef _composer.phar composer.phar
+compdef _composer composer
