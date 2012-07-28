@@ -1,0 +1,5 @@
+serve () {
+    ip=$(myip)
+    echo "http://$ip:8000/"
+    python -m SimpleHTTPServer
+}

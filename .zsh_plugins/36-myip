@@ -1,0 +1,3 @@
+myip () {
+    curl -s ifconfig.in
+}
