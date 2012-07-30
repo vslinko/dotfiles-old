@@ -1,5 +1,10 @@
 serve () {
-    ip=$(myip)
+    ip="$(myip)"
+    port="$1"
     echo "http://$ip:8000/"
-    python -m SimpleHTTPServer
+    if [ x = x"$port" ]; then
+        python -m SimpleHTTPServer
+    else
+        python -m SimpleHTTPServer "$port"
+    fi
 }
