@@ -1,3 +1,4 @@
 HOME_BIN=$HOME/.bin
 PATH=/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin
 EDITOR=nano
+LANG=en_US.UTF-8
