@@ -19,6 +19,7 @@ if [ -x /usr/local/bin/brew ]; then
 fi
 
 unalias c
+alias -r gaa='git add .'
 alias -r www='sudo -u www-data'
 hash -d c=$HOME/Code
 
