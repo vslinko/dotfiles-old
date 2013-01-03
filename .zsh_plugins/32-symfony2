@@ -1,9 +1,0 @@
-alias app=app/console
-
-_symfony2 () {
-    if [ -f app/console ]; then
-        compadd $(app/console --no-ansi | sed "1,/Available commands/d" | awk '/^  [a-z]+/ { print $1 }')
-    fi
-}
-
-compdef _symfony2 app/console
