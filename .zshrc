@@ -18,6 +18,7 @@ if [ -x /usr/local/bin/brew ]; then
     fi
 fi
 
+unalias c
 alias -r www='sudo -u www-data'
 hash -d c=$HOME/Code
 
