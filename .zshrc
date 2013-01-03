@@ -1,6 +1,6 @@
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="af-magic"
-plugins=(git symfony2 composer)
+plugins=(history brew npm composer gem git git-flow node symfony2 sublime)
 source $ZSH/oh-my-zsh.sh
 
 export PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:$HOME/bin
