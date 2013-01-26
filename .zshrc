@@ -4,6 +4,9 @@ DISABLE_LS_COLORS="true"
 plugins=(history brew npm composer gem git git-flow node symfony2 sublime)
 source $ZSH/oh-my-zsh.sh
 
+# disable correction
+unsetopt correct_all
+
 export PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:$HOME/bin
 export EDITOR=nano
 export LANG=en_US.UTF-8
