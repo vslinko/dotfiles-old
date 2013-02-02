@@ -1,7 +1,7 @@
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="af-magic"
 DISABLE_LS_COLORS="true"
-plugins=(history brew npm composer gem git git-flow node symfony2 sublime heroku)
+plugins=(history brew npm composer gem rvm git git-flow node symfony2 sublime heroku)
 source $ZSH/oh-my-zsh.sh
 
 # disable correction
@@ -23,6 +23,10 @@ if [ -x /usr/local/bin/brew ]; then
 fi
 if [ -d /usr/local/heroku/bin ]; then
     export PATH=/usr/local/heroku/bin:$PATH
+fi
+if [ -d $HOME/.rvm ]; then
+    export PATH=$PATH:$HOME/.rvm/bin
+    source "$HOME/.rvm/scripts/rvm"
 fi
 
 unalias c
