@@ -33,6 +33,7 @@ unalias c
 alias -r gaa='git add .'
 alias -r gdh='git diff HEAD --'
 alias -r www='sudo -u www-data'
+alias -r setup='fab -f .fabric/fabfile.py -H'
 hash -d c=$HOME/Code
 
 _cap () {
