@@ -21,6 +21,9 @@ if [ -x /usr/local/bin/brew ]; then
         export PATH=/usr/local/share/npm/bin:$PATH
     fi
 fi
+if [ -x /usr/local/bin/hub ]; then
+    eval "$(hub alias -s)"
+fi
 if [ -d /usr/local/heroku/bin ]; then
     export PATH=/usr/local/heroku/bin:$PATH
 fi
