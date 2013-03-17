@@ -1,5 +1,0 @@
-Defaults env_reset
-
-root ALL=(ALL:ALL) ALL
-%sudo ALL=(ALL:ALL) NOPASSWD: ALL
-%admin ALL=(ALL:ALL) ALL

@@ -1,5 +1,6 @@
 [user]
-	name = Vyacheslav Slinko
-	email = vyacheslav.slinko@gmail.com
+name = Vyacheslav Slinko
+email = vyacheslav.slinko@gmail.com
+
 [core]
-	editor = nano
+editor = nano
