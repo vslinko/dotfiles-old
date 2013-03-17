@@ -1,5 +1,5 @@
 ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="af-magic"
+ZSH_THEME="steeef"
 DISABLE_LS_COLORS="true"
 plugins=(history brew npm composer gem rvm git git-flow node symfony2 sublime heroku)
 source $ZSH/oh-my-zsh.sh
