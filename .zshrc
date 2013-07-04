@@ -24,3 +24,20 @@ if [ -d "$HOME/.rvm" ]; then
     export PATH="$PATH:$HOME/.rvm/bin"
     source "$HOME/.rvm/scripts/rvm"
 fi
+
+npm_release() {
+  VERSION="$1"
+
+  if [ "x$VERSION" = "x" ]; then
+    echo "Usage: $0 VERSION" >&2
+    return 1
+  fi
+
+  sed -i '' -E 's/"version": "[^"]+"/"version": "'"$VERSION"'"/' package.json
+  git add package.json
+  git commit -m "Release $VERSION"
+  git tag "v$VERSION" HEAD
+  git push origin
+  git push origin "v$VERSION"
+  npm publish
+}
