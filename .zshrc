@@ -41,3 +41,7 @@ npm_release() {
   git push origin "v$VERSION"
   npm publish
 }
+
+npmv() {
+  npm view $1 version
+}
